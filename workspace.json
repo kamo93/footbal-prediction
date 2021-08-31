@@ -1,0 +1,131 @@
+{
+  "version": 2,
+  "projects": {
+    "football-predictions-app": {
+      "root": "apps/football-predictions-app",
+      "sourceRoot": "apps/football-predictions-app/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/football-predictions-app",
+            "index": "apps/football-predictions-app/src/index.html",
+            "main": "apps/football-predictions-app/src/main.tsx",
+            "polyfills": "apps/football-predictions-app/src/polyfills.ts",
+            "tsConfig": "apps/football-predictions-app/tsconfig.app.json",
+            "assets": [
+              "apps/football-predictions-app/src/favicon.ico",
+              "apps/football-predictions-app/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/football-predictions-app/src/environments/environment.ts",
+                  "with": "apps/football-predictions-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "football-predictions-app:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "football-predictions-app:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/football-predictions-app/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/football-predictions-app"],
+          "options": {
+            "jestConfig": "apps/football-predictions-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "football-predictions-app-e2e": {
+      "root": "apps/football-predictions-app-e2e",
+      "sourceRoot": "apps/football-predictions-app-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/football-predictions-app-e2e/cypress.json",
+            "devServerTarget": "football-predictions-app:serve",
+            "tsConfig": "apps/football-predictions-app-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "football-predictions-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/football-predictions-app-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "football-predictions-app"
+}
