@@ -10,6 +10,8 @@
   "private": true,
   "dependencies": {
     "core-js": "^3.6.5",
+    "fastify": "^3.20.2",
+    "fastify-axios": "^1.2.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-is": "17.0.2",
@@ -23,6 +25,7 @@
     "@nrwl/eslint-plugin-nx": "12.8.0",
     "@nrwl/jest": "12.8.0",
     "@nrwl/linter": "12.8.0",
+    "@nrwl/node": "^12.8.0",
     "@nrwl/react": "12.8.0",
     "@nrwl/tao": "12.8.0",
     "@nrwl/web": "12.8.0",

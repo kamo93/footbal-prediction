@@ -1,6 +1,56 @@
 {
   "version": 2,
   "projects": {
+    "football-predictions-api": {
+      "root": "apps/football-predictions-api",
+      "sourceRoot": "apps/football-predictions-api/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/football-predictions-api",
+            "main": "apps/football-predictions-api/src/main.ts",
+            "tsConfig": "apps/football-predictions-api/tsconfig.app.json",
+            "assets": ["apps/football-predictions-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/football-predictions-api/src/environments/environment.ts",
+                  "with": "apps/football-predictions-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "football-predictions-api:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/football-predictions-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/football-predictions-api"],
+          "options": {
+            "jestConfig": "apps/football-predictions-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "football-predictions-app": {
       "root": "apps/football-predictions-app",
       "sourceRoot": "apps/football-predictions-app/src",
@@ -52,7 +102,8 @@
           "executor": "@nrwl/web:dev-server",
           "options": {
             "buildTarget": "football-predictions-app:build",
-            "hmr": true
+            "hmr": true,
+            "proxyConfig": "apps/football-predictions-app/proxy.conf.json"
           },
           "configurations": {
             "production": {
